@@ -6,11 +6,11 @@ pipeline {
     agent any
 
     // 🌍 파이프라인 전체에서 공통으로 사용할 환경 변수 설정
-    //environment {
+    environment {
         // macOS/Homebrew 환경에서 Node.js, npm 등이 설치된 경로를 인식하도록 PATH 재설정
         // 윈도우에서는 Jenkins가 기본 PATH를 자동으로 인식하므로 별도 설정 필요 없음
         //PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    //}
+    }
 
     // 🏗️ 실제 작업 단계를 정의하는 블록
     stages {
@@ -27,7 +27,7 @@ pipeline {
         stage('Install') {
             steps {
                 // package.json에 정의된 모든 npm 패키지 설치
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
@@ -35,7 +35,7 @@ pipeline {
         stage('Test') {
             steps {
                 // npm test 명령어 실행 (package.json의 "test" 스크립트 사용)
-                sh 'npm test'
+                bat 'npm test'
             }
         }
 
@@ -56,7 +56,7 @@ pipeline {
 
             steps {
                 // npm start 명령 실행 (보통 서버 시작 또는 빌드 스크립트)
-                sh 'npm start'
+                bat 'npm start'
             }
         }
     }
