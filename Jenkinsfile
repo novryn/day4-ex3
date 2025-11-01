@@ -40,9 +40,10 @@ pipeline {
         // }
         stage('Test') {
             steps {
-                bat 'npm test -- --passWithNoTests'
+                bat 'set "CI=" && npm test -- --passWithNoTests'
             }
         }
+
 
 
         // 🚀 4️⃣ 애플리케이션 실행 (main 브랜치일 때만)
